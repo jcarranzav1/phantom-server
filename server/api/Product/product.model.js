@@ -22,8 +22,15 @@ const fields = {
     default: '',
   },
 };
+const references = {
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'users',
+    required: true,
+  },
+};
 
-const productSchema = new mongoose.Schema(fields, {
+const productSchema = new mongoose.Schema(Object.assign(fields, references), {
   timestamps: true,
 });
 

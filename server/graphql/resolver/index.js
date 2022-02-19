@@ -6,12 +6,21 @@ const {
   updateProduct,
   deleteProduct,
 } = require('../../api/Product/product.controller');
-const { loginUserHandler, createUserHandler } = require('../../api/User/user.controller');
+const {
+  loginUserHandler,
+  createUserHandler,
+  allUsers,
+  userById,
+  ownProfile,
+} = require('../../api/User/user.controller');
 
 const resolvers = {
   Query: {
     products: allProducts,
     product: productById,
+    users: allUsers,
+    user: userById,
+    profile: ownProfile,
   },
   Mutation: {
     addProduct: createProduct,

@@ -11,8 +11,14 @@ async function allUsers() {
   const response = getAllUsers();
   return response;
 }
-async function UserById(parent, args) {
+async function userById(parent, args) {
   const response = getUserById(args.id);
+  return response;
+}
+async function ownProfile(parent, args, context) {
+  const { currentUser } = context;
+  if (!currentUser) throw new Error('You must to be logged in to see your profile');
+  const response = getUserById(currentUser.id);
   return response;
 }
 
@@ -39,7 +45,8 @@ async function createUserHandler(parent, args) {
 
 module.exports = {
   allUsers,
-  UserById,
+  userById,
+  ownProfile,
   createUser,
   updateUser,
   loginUserHandler,

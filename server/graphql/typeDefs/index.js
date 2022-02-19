@@ -8,6 +8,7 @@ module.exports = gql`
     category: String!
     description: String
     photo: String
+    user: User!
     createdAt: String
     updatedAt: String
   }
@@ -21,6 +22,7 @@ module.exports = gql`
     cellphone: String
     isAdmin: Boolean
     photo: String
+    products: [Product!]!
     createdAt: String
     updatedAt: String
   }
@@ -77,8 +79,11 @@ module.exports = gql`
   ********************
   """
   type Query {
-    products: [Product!]
+    products: [Product!]!
     product(id: ID!): Product!
+    users: [User!]!
+    user(id: ID!): User
+    profile: User!
   }
 
   type Mutation {

@@ -1,12 +1,12 @@
 const Product = require('./product.model');
 
 async function getAllProducts() {
-  const products = await Product.find();
+  const products = await Product.find().populate('user');
   return products;
 }
 
 async function getProductById(id) {
-  const product = await Product.findById(id);
+  const product = await Product.findById(id).populate('user');
   return product;
 }
 

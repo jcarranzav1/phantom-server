@@ -15,6 +15,9 @@ const config = {
     secret: process.env.TOKEN_SECRET,
     expires: process.env.TOKEN_EXPIRES,
   },
+  stripe: {
+    secret: process.env.STRIPE_KEY,
+  },
 };
 
 module.exports = config;

@@ -21,7 +21,7 @@ async function createProduct(parent, args, context) {
   if (!currentUser) throw new Error('You must to be logged  to create a new product');
   if (!currentUser.isAdmin) throw new Error('Only admins can create a new product');
 
-  const response = await create(args.input);
+  const response = await create({ ...args.input, user: currentUser.id });
   return response;
 }
 
