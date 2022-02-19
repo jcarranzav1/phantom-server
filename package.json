@@ -4,11 +4,21 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon index",
+    "start": "cross-env NODE_ENV=production node index",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npm run lint-files -- server index.js --ext .js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix ",
     "lint-files": "eslint --cache --cache-location=.cache/' -f friendly",
     "prepare": "husky install"
+  },
+  "lint-staged": {
+    "server/**/*.{js,ts,tsx}": [
+      "eslint --fix -f friendly"
+    ],
+    "*.{js,ts,tsx}": [
+      "eslint --fix -f friendly"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -21,5 +31,25 @@
     "husky": "^7.0.4",
     "lint-staged": "^12.3.2",
     "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "apollo-server-express": "^3.6.3",
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.28.1",
+    "cors": "^2.8.5",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "graphql": "^16.3.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.2.2",
+    "morgan": "^1.10.0",
+    "nodemailer": "^6.7.2",
+    "nodemailer-sendgrid": "^1.0.3",
+    "strip-final-newline": "^2.0.0",
+    "uuid": "^8.3.2",
+    "validator": "^13.7.0",
+    "vinyl": "^2.2.1",
+    "winston": "^3.6.0"
   }
 }
