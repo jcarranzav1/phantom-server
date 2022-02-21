@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const config = {
   port: process.env.PORT || 4000,
+  client: process.env.FRONTEND_URL,
   database: {
     protocol: process.env.DATABASE_PROTOCOL,
     url: process.env.DATABASE_URL,
@@ -15,8 +16,16 @@ const config = {
     secret: process.env.TOKEN_SECRET,
     expires: process.env.TOKEN_EXPIRES,
   },
+  mail: {
+    apiKey: process.env.EMAIL_APIKEY,
+  },
   stripe: {
     secret: process.env.STRIPE_KEY,
+  },
+  cloudinary: {
+    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    apiKey: process.env.CLOUDINARY_API_KEY,
+    apiSecret: process.env.CLOUDINARY_API_SECRET,
   },
 };
 

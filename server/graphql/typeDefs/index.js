@@ -1,6 +1,8 @@
 const { gql } = require('apollo-server-express');
 
 module.exports = gql`
+  scalar Upload
+
   type Product {
     id: ID!
     model: String!
@@ -32,33 +34,15 @@ module.exports = gql`
     token: String!
   }
 
-  type Admin {
-    id: ID!
-    email: String!
-    firstName: String!
-    lastName: String!
-    password: String!
-    confirmPassword: String!
-    cellphone: String
-    photo: String
-    createdAt: String
-    updatedAt: String
-  }
-
-  type AdminAuth {
-    admin: Admin
-    token: String!
-  }
-
   """
   ********************
   """
   input ProductInput {
     model: String!
-    price: Float!
+    price: String!
     category: String!
     description: String
-    photo: String
+    photo: Upload
   }
 
   input LoginInput {
@@ -75,6 +59,13 @@ module.exports = gql`
     isAdmin: Boolean
   }
 
+  input UpdateAccountInput {
+    firstName: String
+    lastName: String
+    cellphone: String
+    photo: Upload
+    description: String
+  }
   """
   ********************
   """
@@ -90,9 +81,8 @@ module.exports = gql`
     addProduct(input: ProductInput!): Product
     updateProduct(id: ID!, input: ProductInput!): Product
     deleteProduct(id: ID!): Product
-    createUser(input: CreateAccountInput!): UserAuth
+    createUser(input: CreateAccountInput!): User
+    updateProfile(id: ID!, input: UpdateAccountInput!): User
     loginUser(input: LoginInput): UserAuth
-    createAdmin(input: CreateAccountInput!): AdminAuth
-    loginAdmin(input: LoginInput): AdminAuth
   }
 `;

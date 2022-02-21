@@ -52,13 +52,9 @@ async function signUpUser(payload) {
 
   const user = await createUser(payload);
 
-  const { _id: id } = user;
-  const token = signToken(id);
-
-  return {
-    user,
-    token,
-  };
+  /* const { _id: id } = user;
+  const token = signToken(id); */
+  return user;
 }
 module.exports = {
   getAllUsers,

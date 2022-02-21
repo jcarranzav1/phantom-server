@@ -44,7 +44,7 @@ const fields = {
   },
 
   cellphone: {
-    type: Number,
+    type: String,
     trim: true,
   },
   photo: {

@@ -1,4 +1,4 @@
-const { loginAdminHandler, createAdminHandler } = require('../../api/Admin/admin.controller');
+const { GraphQLUpload } = require('graphql-upload');
 const {
   allProducts,
   productById,
@@ -12,9 +12,12 @@ const {
   allUsers,
   userById,
   ownProfile,
+  updateProfile,
 } = require('../../api/User/user.controller');
 
 const resolvers = {
+  Upload: GraphQLUpload,
+
   Query: {
     products: allProducts,
     product: productById,
@@ -28,8 +31,7 @@ const resolvers = {
     deleteProduct,
     createUser: createUserHandler,
     loginUser: loginUserHandler,
-    createAdmin: createAdminHandler,
-    loginAdmin: loginAdminHandler,
+    updateProfile,
   },
 };
 

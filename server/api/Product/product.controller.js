@@ -1,3 +1,4 @@
+const uploadToCloudinary = require('../../utils/uploadToCloudinary');
 const {
   getAllProducts,
   getProductById,
@@ -21,7 +22,14 @@ async function createProduct(parent, args, context) {
   if (!currentUser) throw new Error('You must to be logged  to create a new product');
   if (!currentUser.isAdmin) throw new Error('Only admins can create a new product');
 
+  if (args.input.photo) {
+    const file = await uploadToCloudinary(args.input.photo);
+    const photo = file.url;
+    const response = await create({ ...args.input, user: currentUser.id, photo });
+    return response;
+  }
   const response = await create({ ...args.input, user: currentUser.id });
+
   return response;
 }
 

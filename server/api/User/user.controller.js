@@ -1,3 +1,5 @@
+const { mail } = require('../../utils/email');
+const uploadToCloudinary = require('../../utils/uploadToCloudinary');
 const {
   getAllUsers,
   getUserById,
@@ -27,7 +29,17 @@ async function createUser(parent, args) {
   return response;
 }
 
-async function updateUser(parent, args) {
+async function updateProfile(parent, args, context) {
+  const { currentUser } = context;
+  if (!currentUser) throw new Error('You must to be logged in to see update profile');
+  if (currentUser.id !== args.id) throw new Error('Only the owners can updates their profiles');
+
+  if (args.input.photo) {
+    const file = await uploadToCloudinary(args.input.photo);
+    const photo = file.url;
+    const response = await update(args.id, { ...args.input, photo });
+    return response;
+  }
   const response = await update(args.id, args.input);
   return response;
 }
@@ -40,6 +52,15 @@ async function loginUserHandler(parent, args) {
 
 async function createUserHandler(parent, args) {
   const user = await signUpUser(args.input);
+  mail({
+    email: args.input.email,
+    subject: 'Welcome',
+    template: 'server/utils/email/templates/welcomeEmail.html',
+    data: {
+      firstName: args.input.firstName,
+    },
+  });
+
   return user;
 }
 
@@ -48,7 +69,7 @@ module.exports = {
   userById,
   ownProfile,
   createUser,
-  updateUser,
+  updateProfile,
   loginUserHandler,
   createUserHandler,
 };
