@@ -55,6 +55,22 @@ const fields = {
     type: Boolean,
     default: false,
   },
+  city: {
+    type: String,
+    default: '',
+  },
+  country: {
+    type: String,
+    default: '',
+  },
+  postalCode: {
+    type: String,
+    default: '',
+  },
+  address: {
+    type: String,
+    default: '',
+  },
 };
 const hiddenFields = ['password', 'confirmPassword'];
 

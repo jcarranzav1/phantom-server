@@ -6,6 +6,7 @@ const {
   updateProduct,
   deleteProduct,
 } = require('../../api/Product/product.controller');
+const { payment } = require('../../api/Stripe/stripe.controller');
 const {
   loginUserHandler,
   createUserHandler,
@@ -32,6 +33,7 @@ const resolvers = {
     createUser: createUserHandler,
     loginUser: loginUserHandler,
     updateProfile,
+    payment,
   },
 };
 

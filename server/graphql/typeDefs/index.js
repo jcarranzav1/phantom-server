@@ -34,6 +34,14 @@ module.exports = gql`
     token: String!
   }
 
+  type BillingAddres {
+    id: ID
+    city: String
+    country: String
+    postalCode: String
+    line1: String
+  }
+
   """
   ********************
   """
@@ -66,6 +74,11 @@ module.exports = gql`
     photo: Upload
     description: String
   }
+
+  input PaymentInput {
+    tokenId: ID!
+    amount: Float!
+  }
   """
   ********************
   """
@@ -84,5 +97,6 @@ module.exports = gql`
     createUser(input: CreateAccountInput!): User
     updateProfile(id: ID!, input: UpdateAccountInput!): User
     loginUser(input: LoginInput): UserAuth
+    payment(input: PaymentInput!): BillingAddres
   }
 `;
