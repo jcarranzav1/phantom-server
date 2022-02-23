@@ -10,7 +10,7 @@ module.exports = gql`
     category: String!
     description: String
     photo: String
-    user: User!
+    user: User
     createdAt: String
     updatedAt: String
   }
@@ -24,7 +24,6 @@ module.exports = gql`
     cellphone: String
     isAdmin: Boolean
     photo: String
-    products: [Product!]!
     createdAt: String
     updatedAt: String
   }
@@ -34,12 +33,26 @@ module.exports = gql`
     token: String!
   }
 
-  type BillingAddres {
-    id: ID
+  type billingAddress {
     city: String
     country: String
     postalCode: String
     line1: String
+  }
+
+  type Cart {
+    product: Product!
+    quantity: Int!
+    id: ID
+  }
+
+  type Order {
+    id: ID!
+    idPayment: String!
+    products: [Cart!]!
+    billingAddress: billingAddress
+    amount: Float!
+    user: User
   }
 
   """
@@ -79,6 +92,18 @@ module.exports = gql`
     tokenId: ID!
     amount: Float!
   }
+
+  input CartInput {
+    product: ID!
+    quantity: Float
+  }
+
+  input OrderInput {
+    idPayment: String!
+    products: [CartInput]!
+    amount: Float!
+  }
+
   """
   ********************
   """
@@ -88,6 +113,9 @@ module.exports = gql`
     users: [User!]!
     user(id: ID!): User
     profile: User!
+    orders: [Order!]!
+    myOrders: [Order!]!
+    userOders: [Order!]!
   }
 
   type Mutation {
@@ -95,8 +123,9 @@ module.exports = gql`
     updateProduct(id: ID!, input: ProductInput!): Product
     deleteProduct(id: ID!): Product
     createUser(input: CreateAccountInput!): User
-    updateProfile(id: ID!, input: UpdateAccountInput!): User
+    updateProfile(input: UpdateAccountInput!): User
     loginUser(input: LoginInput): UserAuth
-    payment(input: PaymentInput!): BillingAddres
+    payment(input: PaymentInput!): billingAddress
+    createOrder(input: OrderInput): Order
   }
 `;

@@ -10,11 +10,11 @@ const {
 } = require('./user.service');
 
 async function allUsers() {
-  const response = getAllUsers();
+  const response = await getAllUsers();
   return response;
 }
 async function userById(parent, args) {
-  const response = getUserById(args.id);
+  const response = await getUserById(args.id);
   return response;
 }
 async function ownProfile(parent, args, context) {
@@ -32,15 +32,14 @@ async function createUser(parent, args) {
 async function updateProfile(parent, args, context) {
   const { currentUser } = context;
   if (!currentUser) throw new Error('You must to be logged in to see update profile');
-  if (currentUser.id !== args.id) throw new Error('Only the owners can updates their profiles');
 
   if (args.input.photo) {
     const file = await uploadToCloudinary(args.input.photo);
     const photo = file.url;
-    const response = await update(args.id, { ...args.input, photo });
+    const response = await update(currentUser.id, { ...args.input, photo });
     return response;
   }
-  const response = await update(args.id, args.input);
+  const response = await update(currentUser.id, args.input);
   return response;
 }
 

@@ -14,7 +14,7 @@ async function context({ req }) {
       const user = await getUserById(decoded.id);
       currentUser = user;
     } catch (error) {
-      throw new Error(error);
+      throw new Error('Token is not valid');
     }
   }
 

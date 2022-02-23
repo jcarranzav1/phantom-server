@@ -1,10 +1,20 @@
 const mongoose = require('mongoose');
 
 const fields = {
+  /* paymendId: {
+    type: String,
+    required: true,
+  }, */
+  idPayment: {
+    type: String,
+    require: true,
+  },
   products: [
     {
-      productId: {
-        type: String,
+      product: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'products',
+        required: true,
       },
       quantity: {
         type: Number,
@@ -12,8 +22,49 @@ const fields = {
       },
     },
   ],
-  amount: { type: Number, required: true },
-  address: { type: Object, required: true },
+  amount: {
+    type: Number,
+    required: true,
+  },
+  billingAddress: {
+    city: {
+      type: String,
+      default: '',
+    },
+    country: {
+      type: String,
+      default: '',
+      required: true,
+    },
+    postalCode: {
+      type: String,
+      default: '',
+    },
+    line1: {
+      type: String,
+      default: '',
+      required: true,
+    },
+  },
+  /*  city: {
+    type: String,
+    default: '',
+  },
+  country: {
+    type: String,
+    default: '',
+    required: true,
+  },
+  postalCode: {
+    type: String,
+    default: '',
+  },
+  address: {
+    type: String,
+    default: '',
+    required: true,
+  }, */
+  /* address: { type: Object, required: true }, */
 };
 
 const references = {

@@ -8,11 +8,11 @@ const {
 } = require('./product.service');
 
 async function allProducts() {
-  const response = getAllProducts();
+  const response = await getAllProducts();
   return response;
 }
 async function productById(parent, args) {
-  const response = getProductById(args.id);
+  const response = await getProductById(args.id);
   return response;
 }
 

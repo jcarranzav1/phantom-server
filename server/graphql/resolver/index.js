@@ -1,5 +1,11 @@
 const { GraphQLUpload } = require('graphql-upload');
 const {
+  createOrder,
+  allOrders,
+  myOrders,
+  orderByUserId,
+} = require('../../api/Orders/orders.controller');
+const {
   allProducts,
   productById,
   createProduct,
@@ -25,6 +31,9 @@ const resolvers = {
     users: allUsers,
     user: userById,
     profile: ownProfile,
+    orders: allOrders,
+    myOrders,
+    userOders: orderByUserId,
   },
   Mutation: {
     addProduct: createProduct,
@@ -34,6 +43,7 @@ const resolvers = {
     loginUser: loginUserHandler,
     updateProfile,
     payment,
+    createOrder,
   },
 };
 
