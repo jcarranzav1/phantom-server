@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clonar y checkout de la rama actual
-      - uses: actions/checkout@v2
+        uses: actions/checkout@v2
       - name: Instalar dependencias
         run: npm ci
       - name: Ejecturar eslint
