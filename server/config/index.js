@@ -2,7 +2,6 @@ require('dotenv').config();
 
 const config = {
   port: process.env.PORT || 4000,
-  client: process.env.FRONTEND_URL,
   database: {
     protocol: process.env.DATABASE_PROTOCOL,
     url: process.env.DATABASE_URL,
