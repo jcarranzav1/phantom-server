@@ -13,4 +13,4 @@ jobs:
       - name: Instalar dependencias
         run: npm ci
       - name: Ejecturar eslint
-        run: npm run lint:fix
+        run: npx eslint . --ext .js,.jsx
