@@ -21,4 +21,3 @@ logs/
 *.vsix
 
 tmp/
-package-lock.json
