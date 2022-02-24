@@ -5,6 +5,13 @@ async function getAllProducts() {
   return products;
 }
 
+async function getProductByPage(page, limit) {
+  const products = await Product.find()
+    .limit(limit)
+    .skip((page - 1) * limit);
+  return products;
+}
+
 async function getProductById(id) {
   const product = await Product.findById(id).populate('user');
   return product;
@@ -30,6 +37,7 @@ async function deleteProduct(id) {
 
 module.exports = {
   getAllProducts,
+  getProductByPage,
   getProductById,
   createProduct,
   updateProduct,

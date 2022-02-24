@@ -5,12 +5,19 @@ const {
   createProduct: create,
   updateProduct: update,
   deleteProduct: removeProduct,
+  getProductByPage,
 } = require('./product.service');
 
 async function allProducts() {
   const response = await getAllProducts();
   return response;
 }
+
+async function productByPage(parent, args) {
+  const response = await getProductByPage(args.page, args.limit);
+  return response;
+}
+
 async function productById(parent, args) {
   const response = await getProductById(args.id);
   return response;
@@ -55,6 +62,7 @@ async function deleteProduct(parent, args, context) {
 
 module.exports = {
   allProducts,
+  productByPage,
   productById,
   createProduct,
   updateProduct,

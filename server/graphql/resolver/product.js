@@ -1,6 +1,7 @@
 const { GraphQLUpload } = require('graphql-upload');
 const {
   allProducts,
+  productByPage,
   productById,
   createProduct,
   updateProduct,
@@ -12,6 +13,7 @@ module.exports = {
   Query: {
     products: allProducts,
     product: productById,
+    productByPage,
   },
   Mutation: {
     addProduct: createProduct,

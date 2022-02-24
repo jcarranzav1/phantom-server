@@ -25,6 +25,7 @@ module.exports = gql`
   extend type Query {
     products: [Product!]!
     product(id: ID!): Product!
+    productByPage(page: Int!, limit: Int!): [Product!]!
   }
 
   extend type Mutation {
