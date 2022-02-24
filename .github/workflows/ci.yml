@@ -1,0 +1,16 @@
+name: Deploy
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  linter:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clonar y checkout de la rama actual
+      - uses: actions/checkout@v2
+      - name: Instalar dependencias
+        run: npm ci
+      - name: Ejecturar eslint
+        run: npm run lint:fix
