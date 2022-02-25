@@ -20,6 +20,8 @@ module.exports = gql`
     billingAddress: billingAddress
     amount: Float!
     user: User
+    createdAt: String
+    updatedAt: String
   }
 
   input billingAddressInput {
@@ -41,7 +43,7 @@ module.exports = gql`
 
   extend type Query {
     orders: [Order!]!
-    myOrders: [Order!]!
+    myOrders(page: Int!, limit: Int!): [Order!]!
     userOders: [Order!]!
   }
   extend type Mutation {

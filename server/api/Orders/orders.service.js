@@ -10,8 +10,11 @@ async function getOrderById(id) {
   return order;
 }
 
-async function orderByUser(id) {
-  const orders = await Order.find({ user: id }).populate('products.product');
+async function orderByUser(id, page, limit) {
+  const orders = await Order.find({ user: id })
+    .populate('products.product')
+    .limit(limit)
+    .skip((page - 1) * limit);
   return orders;
 }
 

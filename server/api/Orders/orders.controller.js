@@ -23,7 +23,7 @@ async function orderById(parent, args) {
 async function myOrders(parent, args, context) {
   const { currentUser } = context;
   if (!currentUser) throw new Error('You must to be logged  to see your orders');
-  const response = await orderByUser(currentUser.id);
+  const response = await orderByUser(currentUser.id, args.page, args.limit);
   return response;
 }
 
