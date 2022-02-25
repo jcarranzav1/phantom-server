@@ -44,14 +44,18 @@ async function createOrder(parent, args, context) {
   const {
     city, country, postalCode, address,
   } = user;
+
   const response = await create({
     ...args.input,
     billingAddress: {
-      city, country, postalCode, line1: address,
+      city,
+      country,
+      postalCode,
+      line1: address,
     },
     user: user.id,
   });
-  console.log(response);
+
   return response;
 }
 

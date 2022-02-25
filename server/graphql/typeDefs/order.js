@@ -7,24 +7,36 @@ module.exports = gql`
     id: ID
   }
 
+  type billingAddress {
+    city: String
+    country: String
+    postalCode: String
+    line1: String
+  }
+
   type Order {
     id: ID!
-    idPayment: String!
     products: [Cart!]!
     billingAddress: billingAddress
     amount: Float!
     user: User
   }
 
+  input billingAddressInput {
+    city: String
+    country: String
+    postalCode: String
+    line1: String
+  }
   input CartInput {
     product: ID!
     quantity: Float
   }
 
   input OrderInput {
-    idPayment: String!
     products: [CartInput]!
     amount: Float!
+    billingAddress: billingAddressInput
   }
 
   extend type Query {

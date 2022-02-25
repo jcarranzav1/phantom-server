@@ -1,14 +1,6 @@
 const mongoose = require('mongoose');
 
 const fields = {
-  /* paymendId: {
-    type: String,
-    required: true,
-  }, */
-  idPayment: {
-    type: String,
-    require: true,
-  },
   products: [
     {
       product: {
@@ -34,7 +26,6 @@ const fields = {
     country: {
       type: String,
       default: '',
-      required: true,
     },
     postalCode: {
       type: String,
@@ -43,7 +34,6 @@ const fields = {
     line1: {
       type: String,
       default: '',
-      required: true,
     },
   },
   /*  city: {
