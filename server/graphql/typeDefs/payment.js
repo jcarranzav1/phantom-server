@@ -2,9 +2,10 @@ const { gql } = require('apollo-server-express');
 
 module.exports = gql`
   type Payment {
-    clientSecret: ID!
+    status: Boolean!
   }
   input PaymentInput {
+    id: ID!
     amount: Float!
   }
   extend type Mutation {

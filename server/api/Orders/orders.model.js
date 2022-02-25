@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const fields = {
+  idPayment: {
+    type: String,
+    require: true,
+  },
   products: [
     {
       product: {

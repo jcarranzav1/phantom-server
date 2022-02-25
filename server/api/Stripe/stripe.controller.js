@@ -16,11 +16,13 @@ async function payment(parent, args, context) {
       amount: args.input.amount,
       currency: 'usd',
       receipt_email: user.email,
-      automatic_payment_methods: {
-        enabled: true,
-      },
+      payment_method: args.input.id,
+      confirm: true,
     });
-    return { clientSecret: paymentIntent.client_secret };
+    console.log(paymentIntent);
+    if (!paymentIntent) return { status: false };
+    return { status: true };
+    /* return { clientSecret: paymentIntent.client_secret }; */
   } catch (err) {
     throw new Error(err);
   }
