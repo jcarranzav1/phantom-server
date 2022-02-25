@@ -15,9 +15,9 @@ module.exports = gql`
   }
 
   input ProductInput {
-    model: String!
-    price: String!
-    category: String!
+    model: String
+    price: String
+    category: String
     description: String
     photo: Upload
   }

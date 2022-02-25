@@ -46,6 +46,13 @@ async function updateProduct(parent, args, context) {
   if (!currentUser) throw new Error('You must to be logged  to update the products');
   if (!currentUser.isAdmin) throw new Error('Only admins can update the products');
 
+  if (args.input.photo) {
+    const file = await uploadToCloudinary(args.input.photo);
+    const photo = file.url;
+    const response = await update(args.id, { ...args.input, user: currentUser.id, photo });
+    return response;
+  }
+
   const response = await update(args.id, args.input);
   return response;
 }
