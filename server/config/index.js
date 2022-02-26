@@ -5,6 +5,7 @@ const config = {
   database: {
     protocol: process.env.DATABASE_PROTOCOL,
     url: process.env.DATABASE_URL,
+    urlTest: process.env.DATABASE_TEST,
     username: process.env.DATABASE_USERNAME,
     password: process.env.DATABASE_PASSWORD,
   },

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon index",
     "start": "cross-env NODE_ENV=production node index",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "cross-env NODE_ENV=test jest",
     "lint": "npm run lint-files -- server index.js --ext .js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix ",
     "lint-files": "eslint --cache --cache-location=.cache/' -f friendly",
@@ -28,9 +28,12 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-formatter-friendly": "^7.0.0",
     "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.1",
     "husky": "^7.0.4",
+    "jest": "^27.5.1",
     "lint-staged": "^12.3.2",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "supertest": "^6.2.2"
   },
   "dependencies": {
     "apollo-server-express": "^3.6.3",
