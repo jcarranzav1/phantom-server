@@ -2,7 +2,6 @@ jest.setTimeout(7000);
 const baseUrl = 'https://ecommerce-mir.herokuapp.com/api';
 const request = require('supertest')(baseUrl);
 const { connect, disconnect } = require('../server/database');
-const { database } = require('../server/config');
 
 const User = require('../server/api/User/user.model');
 
@@ -11,10 +10,10 @@ describe('Create a order', () => {
 
   beforeAll(async () => {
     connect({
-      protocol: database.protocol,
-      url: database.urlTest,
-      username: database.username,
-      password: database.password,
+      protocol: 'mongodb+srv',
+      url: 'cluster0.8ct9q.mongodb.net/ecommerceDatabase-test?retryWrites=true&w=majority',
+      username: 'admin',
+      password: 'Juandiego02',
     });
   });
 
