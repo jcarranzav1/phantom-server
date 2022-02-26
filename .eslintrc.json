@@ -21,7 +21,7 @@
         "argsIgnorePattern": "next|res"
       }
     ],
-    "max-len": ["error", { "code": 130 }],
+    "max-len": ["error", { "code": 250 }],
     "implicit-arrow-linebreak": "off"
   }
 }
