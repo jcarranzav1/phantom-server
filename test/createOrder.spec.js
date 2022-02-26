@@ -15,7 +15,8 @@ describe('Users', () => {
     confirmPassword: 'Juandiego#02',
   };
 
-  // const token = '';
+  let token = '';
+
   beforeAll(async () => {
     connect({
       protocol: database.protocol,
@@ -23,18 +24,33 @@ describe('Users', () => {
       username: database.username,
       password: database.password,
     });
-    console.log(userData);
+
     request
       .post('/')
       .send({
-        query:
-          'mutation CreateUser($input: CreateAccountInput!){createUser(input:$input){isAdmin id}}',
+        query: 'mutation CreateUser($input: CreateAccountInput!){createUser(input:$input){id}}',
         variables: {
           input: userData,
         },
       })
       .end((err, res) => {
         console.log(res.body);
+      });
+
+    request
+      .post('/')
+      .send({
+        query: 'mutation LoginUser($input: LoginInput!){loginUser(input:$input){token}}',
+        variables: {
+          input: { email: 'jcarranzav1@hotmail.com', password: 'Juandiego#02' },
+        },
+      })
+      // eslint-disable-next-line consistent-return
+      .end((err, res) => {
+        token = res.body.data.loginUser;
+        console.log(res.body);
+        expect(token).toBeDefined();
+        expect(token).not.toEqual('');
       });
   });
 
@@ -43,5 +59,7 @@ describe('Users', () => {
     disconnect();
   });
 
-  test('Create Order', async () => {});
+  test('Create Order', async () => {
+    console.log(token);
+  });
 });
