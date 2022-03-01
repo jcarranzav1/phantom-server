@@ -1,4 +1,3 @@
-jest.setTimeout(7000);
 const baseUrl = 'https://ecommerce-mir.herokuapp.com/api';
 const request = require('supertest')(baseUrl);
 const { connect, disconnect } = require('../server/database');
@@ -9,14 +8,10 @@ describe('Create a order', () => {
   let token = '';
 
   beforeAll(async () => {
-    connect({
-      protocol: 'mongodb+srv',
-      url: 'cluster0.8ct9q.mongodb.net/ecommerceDatabase-test?retryWrites=true&w=majority',
-      username: 'admin',
-      password: 'Juandiego02',
-    });
+    connect(
+      'mongodb+srv://admin:Juandiego02@cluster0.8ct9q.mongodb.net/ecommerceDatabase-test?retryWrites=true&w=majority',
+    );
   });
-
   afterAll(async () => {
     await User.deleteMany({});
     disconnect();

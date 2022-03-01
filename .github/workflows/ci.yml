@@ -14,5 +14,3 @@ jobs:
         run: npm ci
       - name: Ejecturar eslint
         run: npx eslint . --ext .js,.jsx
-      - name: Run test
-        run: npm run test

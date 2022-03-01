@@ -1,22 +1,8 @@
 const mongoose = require('mongoose');
 const { logger } = require('./config/logger');
 
-exports.connect = ({
-  protocol = 'mongodb', url = '', username, password,
-}, options = {}) => {
-  let dburl = '';
-  const { MONGO_DB_URI } = process.env;
-  if (MONGO_DB_URI) {
-    dburl = MONGO_DB_URI;
-  } else if (username && password) {
-    dburl = `${protocol}://${username}:${password}@${url}`;
-  } else {
-    dburl = `${protocol}://${url}`;
-  }
-
-  mongoose.connect(dburl, {
-    ...options,
-  });
+exports.connect = (dburl, options = {}) => {
+  mongoose.connect(dburl, options);
 
   mongoose.connection.on('connected', () => {
     logger.info('Database connected');

@@ -2,13 +2,10 @@ require('dotenv').config();
 
 const config = {
   port: process.env.PORT || 4000,
-  database: {
-    protocol: process.env.DATABASE_PROTOCOL,
-    url: process.env.DATABASE_URL,
-    urlTest: process.env.DATABASE_TEST,
-    username: process.env.DATABASE_USERNAME,
-    password: process.env.DATABASE_PASSWORD,
-  },
+
+  mongodb_uri:
+    process.env.NODE_ENV === 'test' ? process.env.TEST_DATABASE_URI : process.env.MONGODB_URI,
+
   cors: {
     origin: process.env.ACCESS_CONTROL_ALLOW_ORIGIN,
   },

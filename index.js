@@ -1,5 +1,5 @@
 const { ApolloServer } = require('apollo-server-express');
-const { port, database } = require('./server/config');
+const { port, mongodb_uri: uri } = require('./server/config');
 const app = require('./server');
 const { connect } = require('./server/database');
 
@@ -7,12 +7,7 @@ const typeDefs = require('./server/graphql/typeDefs');
 const resolvers = require('./server/graphql/resolver');
 const context = require('./server/context');
 
-connect({
-  protocol: database.protocol,
-  url: database.url,
-  username: database.username,
-  password: database.password,
-});
+connect(uri);
 
 async function startServer() {
   const apolloServer = new ApolloServer({
