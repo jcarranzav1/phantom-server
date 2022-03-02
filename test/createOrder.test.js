@@ -14,7 +14,6 @@ let token = '';
 
 beforeAll(async () => {
   server = await createApolloServer(port);
-  // await Product.insertMany(initProducts);
   await mongoose.connect(uri);
 });
 

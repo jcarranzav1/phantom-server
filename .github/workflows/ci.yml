@@ -12,6 +12,7 @@ jobs:
     strategy:
       matrix:
         node-version: [16.x]
+        mongodb-version: ['4.4']
 
     steps:
       - name: Checkout code
@@ -22,6 +23,11 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Start MongoDB ${{ matrix.mongodb-version }}
+        uses: supercharge/mongodb-github-action@1.7.0
+        with:
+          mongodb-version: ${{ matrix.mongodb-version }}
+
       - name: Install Dependencies
         run: npm ci
 
@@ -29,4 +35,7 @@ jobs:
         run: npx eslint . --ext .js,.jsx
 
       - name: Run Tests
-        run: npm test
+        run: TOKEN_SECRET=UKRANIA TOKEN_EXPIRES=20h TEST_DATABASE_URI='mongodb://localhost:27017/ecommerce-test' npm test
+
+        env:
+          CI: true
