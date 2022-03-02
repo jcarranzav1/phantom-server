@@ -19,10 +19,9 @@ async function payment(parent, args, context) {
       payment_method: args.input.id,
       confirm: true,
     });
-    console.log(paymentIntent);
+    // console.log(paymentIntent);
     if (!paymentIntent) return { status: false };
     return { status: true };
-    /* return { clientSecret: paymentIntent.client_secret }; */
   } catch (err) {
     throw new Error(err);
   }

@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon index",
     "start": "cross-env NODE_ENV=production node index",
-    "test": "cross-env NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest  --verbose --runInBand --detectOpenHandles",
     "lint": "npm run lint-files -- server index.js --ext .js,.ts,.tsx",
     "lint:fix": "npm run lint -- --fix ",
     "lint-files": "eslint --cache --cache-location=.cache/' -f friendly",
@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "@types/jest": "^27.4.1",
+    "apollo-server-core": "^3.6.3",
     "apollo-server-express": "^3.6.3",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.28.1",

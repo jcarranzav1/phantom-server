@@ -11,7 +11,10 @@ exports.mail = async ({ email, subject, template, data }) => {
     apiKey: mail.apiKey,
   };
 
-  let htmlText = await getHTML(template);
+  let htmlText = await getHTML(template)
+    .then(() => console.log('Se convirtio en inline-css'))
+    .catch((e) => console.log(e));
+
   htmlText = replaceDoubleBraces(htmlText, data);
 
   const transporter = nodemailer.createTransport(sgTransport(options));

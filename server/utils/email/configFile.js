@@ -11,7 +11,7 @@ const getFile = (filePath) =>
     contents: Buffer.from(String(fs.readFileSync(filePath))),
   });
 
-exports.getHTML = (htmlFile, options = {}) => {
+exports.getHTML = async (htmlFile, options = {}) => {
   const file = getFile(htmlFile);
   // eslint-disable-next-line no-param-reassign
   options.url = `file://${file.path}`;

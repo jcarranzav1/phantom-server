@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { mail } = require('../../utils/email');
 const uploadToCloudinary = require('../../utils/uploadToCloudinary');
 const {
@@ -51,14 +52,16 @@ async function loginUserHandler(parent, args) {
 
 async function createUserHandler(parent, args) {
   const user = await signUpUser(args.input);
-  mail({
-    email: args.input.email,
-    subject: 'Welcome',
-    template: 'server/utils/email/templates/welcomeEmail.html',
-    data: {
-      firstName: args.input.firstName,
-    },
-  });
+  if (!process.env.NODE_ENV === 'test') {
+    mail({
+      email: args.input.email,
+      subject: 'Welcome',
+      template: 'server/utils/email/templates/welcomeEmail.html',
+      data: {
+        firstName: args.input.firstName,
+      },
+    });
+  }
 
   return user;
 }
