@@ -41,18 +41,9 @@ async function createOrder(parent, args, context) {
   if (!currentUser) throw new Error('You must to be logged  to create a pay order');
 
   const user = await getUserById(currentUser.id);
-  const {
-    city, country, postalCode, address,
-  } = user;
 
   const response = await create({
     ...args.input,
-    billingAddress: {
-      city,
-      country,
-      postalCode,
-      line1: address,
-    },
     user: user.id,
   });
 

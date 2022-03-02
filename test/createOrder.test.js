@@ -226,6 +226,12 @@ describe('Simulate to buy products and create order', () => {
       price: 1030,
       category: 'laptop',
     });
+    expect(orders[orderLength - 1].billingAddress).toEqual({
+      city: 'Trujillo',
+      country: 'Perú',
+      line1: 'Javier Heraud # 541. Urbanización Palermo',
+      postalCode: '13006',
+    });
   });
 });
 
