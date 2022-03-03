@@ -3,6 +3,7 @@ const {
   allOrders,
   myOrders,
   orderByUserId,
+  orderById,
 } = require('../../api/Orders/orders.controller');
 
 module.exports = {
@@ -10,6 +11,7 @@ module.exports = {
     orders: allOrders,
     myOrders,
     userOders: orderByUserId,
+    order: orderById,
   },
   Mutation: {
     createOrder,

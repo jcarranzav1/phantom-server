@@ -45,6 +45,7 @@ module.exports = gql`
     orders: [Order!]!
     myOrders(page: Int!, limit: Int!): [Order!]!
     userOders: [Order!]!
+    order(id: ID!): Order
   }
   extend type Mutation {
     createOrder(input: OrderInput): Order

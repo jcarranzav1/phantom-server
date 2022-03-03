@@ -6,7 +6,7 @@ async function getAllOrders() {
 }
 
 async function getOrderById(id) {
-  const order = await Order.findById(id).populate('user product');
+  const order = await Order.findById(id).populate('user products.product');
   return order;
 }
 
